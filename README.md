@@ -2,16 +2,49 @@
 
 ### Course Repository:
 
-https://github.com/iamshaunjp/React-Firebase/tree/lesson-48
+https://github.com/iamshaunjp/React-Firebase
+
+Learn React from the ground up to make dynamic websites (includes Context, Hooks, Reducers, Routing, Auth, Databases)
+
+### What you'll learn
+
+Learn how to create modern & dynamic React websites from the ground up
+Learn about Components, Props, Hooks, Context, State, Reducers & the React Router
+Learn how to implement a database, authentication & file uploads with React & Firebase
+Create & deploy fully fledged user-based React websites
+
+### Description
+
+React is a hugely popular front-end library and React developers are always in hight demand in the web dev job market. In this course you'll learn how to use React from the ground-up to create dynamic & interactive websites, and by the time you finish you'll be in a great position to succeed in a job as a React developer. You'll also have 4 full React projects under your belt too, which you can customize and use in your portfolio!
+
+Throughout the course you'll learn exactly what React is and why it's such a popular choice to make interactive & dynamic websites. You'll learn how to set up a React website from scratch, how to create React components, how to use state to manage component data & how to work with interactive events such as click events & form submissions.
+
+You'll also get hands-on practise with the React Router (which is used in React to create website with "multiple pages") and you'll see how these are actually known as Single Page Applications (or SPA's for short).
+
+We'll dive into React Hooks such as useState, useEffect, useParams & useHistory and use them to help us create 4 full React projects from scratch - a memory game, a recipe website, a finance tracker & a project management application.
+
+You'll also learn some more avanced topics such as the React Context API to handle global state & reducers (including the useReducer hook) to help manage more complex state.
+
+Once you've mastered React, we'll take our websites to the next level by integrating them with Firebase - a backend as a service. You'll learn how to add services such as a real-time database & authentication into your React sites as well as how to allow end-users to upload files from their computers with the help of Firebase Storage. Finally, I'll teach you how to build & deploy your React sites to the web using Firebase Hosting.
+
+By the end of the course you'll have a solid understanding of React & be able to make your own production-ready websites!
+
+Who this course is for:
+Beginner developers wanting to learn a front-end framework like React
+Beginner React developers wanting to further their React skills & knowledge
+Intermediate & advanced React developers wanting to learn how to integrate back-end services like authentication & databases
+Developers who have used other frameworks (like Vue) & want to switch to React
+
+# Start Here
 
 ## Section 1: Introduction & Setup
 
 ### 1. What you should already know
 
-Modern JavaScript Tutorial Playlist:
+Modern JavaScript Tutorial Playlist:  
 https://www.youtube.com/watch?v=iWOYAxlnaww&list=PL4cUxeGkcC9haFPT7J25Q9GRB_ZkFrQAc
 
-HTML & CSS Crash Course Tutorial Playlist:
+HTML & CSS Crash Course Tutorial Playlist:  
 https://www.youtube.com/watch?v=hu-q2zYwEYs&list=PL4cUxeGkcC9ivBf_eKCPIAYXWzLlPAm6G
 
 ## Section 2: React Basics
@@ -27,3 +60,17 @@ https://www.youtube.com/watch?v=hu-q2zYwEYs&list=PL4cUxeGkcC9ivBf_eKCPIAYXWzLlPA
 ## Folder 2: state & useState
 
 ## Section 5: Components & Props
+
+## Section 6: Styling React Applications
+
+## Section 7: User Input & Events
+
+## Section 8: Fetching Data & useEffect
+
+## Folder 3: tripago
+
+// install the json server
+npm install -g json-server
+
+// run the json server
+json-server --watch ./data/db.json
