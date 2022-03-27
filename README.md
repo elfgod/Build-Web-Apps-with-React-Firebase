@@ -78,3 +78,13 @@ json-server --watch ./data/db.json
 ## Section 9: Project Build: Memory Game
 
 ## Folder 4: memory game
+
+## Section 10: The React Router
+
+## Folder 4: multipage-site
+
+// run the json server
+json-server --watch ./data/db.json
+
+// install React Router version 5.1
+npm i react-router-dom@5.1
