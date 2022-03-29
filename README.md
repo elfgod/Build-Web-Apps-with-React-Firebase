@@ -98,3 +98,5 @@ json-server --watch ./data/db.json
 
 // install React Router version 5.1
 npm i react-router-dom@5.1
+
+## Section 12: React Context & Reducers
