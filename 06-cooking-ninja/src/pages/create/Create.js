@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { useHistory } from 'react-router-dom'
-import { useFetch } from '../../hooks/useFetch'
+// import { useFetch } from '../../hooks/useFetch'
+import { projectFirestore } from '../../firebase/config'
 
 // styles
 import './Create.css'
@@ -14,21 +15,34 @@ const Create = () => {
   const ingredientInput = useRef(null)
   const history = useHistory()
 
-  const { postData, data, error } = useFetch(
-    'http://localhost:3000/recipes',
-    'POST'
-  )
+  // Json web server
+  // const { postData, data, error } = useFetch(
+  //   'http://localhost:3000/recipes',
+  //   'POST'
+  // )
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     console.log(title, method, cookingTime, ingredients)
     // We don't to pass in an id, json server automatically generates one
-    postData({
+    // postData({
+    //   title,
+    //   ingredients,
+    //   method,
+    //   cookingTime: cookingTime + ' minutes',
+    // })
+    const doc = {
       title,
       ingredients,
       method,
       cookingTime: cookingTime + ' minutes',
-    })
+    }
+    try {
+      await projectFirestore.collection('recipes').add(doc)
+      history.push('/')
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   const handleAdd = (e) => {
@@ -47,16 +61,16 @@ const Create = () => {
   }
 
   // redirect the user when we get date response
-  useEffect(() => {
-    if (data) {
-      // Sending the user to the home page after creating a new recipe
-      history.push('/')
-      // Sending the user to the recipe page
-      // history.push('/recipes/' + data.id)
-      // Another way to do it:
-      // window.location.href = '/'
-    }
-  }, [data])
+  // useEffect(() => {
+  //   if (data) {
+  //     // Sending the user to the home page after creating a new recipe
+  //     history.push('/')
+  //     // Sending the user to the recipe page
+  //     // history.push('/recipes/' + data.id)
+  //     // Another way to do it:
+  //     // window.location.href = '/'
+  //   }
+  // }, [data, history])
 
   return (
     <div className='create'>

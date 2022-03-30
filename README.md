@@ -100,3 +100,19 @@ json-server --watch ./data/db.json
 npm i react-router-dom@5.1
 
 ## Section 12: React Context & Reducers
+
+## Section 13: Firebase Firestore
+
+### 1. Firestore Databses
+
+1. Create a firebase account
+2. Go to the console menu
+3. Create a new project +
+4. Give a name to the project
+5. Create a Firestore database
+6. Choose test mode
+7. Choose what ever location your traffic comes from
+
+### 2. Connecting to Firebase
+
+`npm install firebase@8.5`
