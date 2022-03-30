@@ -19,10 +19,8 @@ const Home = () => {
   useEffect(() => {
     setIsPending(true)
 
-    projectFirestore
-      .collection('recipes')
-      .get()
-      .then((snapshot) => {
+    const unsub = projectFirestore.collection('recipes').onSnapshot(
+      (snapshot) => {
         console.log('snapshot: ', snapshot)
         if (snapshot.empty) {
           setError('No recipes to load')
@@ -36,11 +34,14 @@ const Home = () => {
           setData(results)
           setIsPending(false)
         }
-      })
-      .catch((err) => {
-        setError(err)
+      },
+      (err) => {
+        setError(err.message)
         setIsPending(false)
-      })
+      }
+    )
+    // Ubsubscribe to prevent memory leaks, from listener
+    return () => unsub()
   }, [])
 
   return (
@@ -53,3 +54,31 @@ const Home = () => {
 }
 
 export default Home
+
+// Without real time listener
+//  useEffect(() => {
+//    setIsPending(true)
+
+//    projectFirestore
+//      .collection('recipes')
+//      .get()
+//      .then((snapshot) => {
+//        console.log('snapshot: ', snapshot)
+//        if (snapshot.empty) {
+//          setError('No recipes to load')
+//          setIsPending(false)
+//        } else {
+//          let results = []
+//          snapshot.forEach((doc) => {
+//            console.log('doc: ', doc)
+//            results.push({ id: doc.id, ...doc.data() })
+//          })
+//          setData(results)
+//          setIsPending(false)
+//        }
+//      })
+//      .catch((err) => {
+//        setError(err)
+//        setIsPending(false)
+//      })
+//  }, [])
