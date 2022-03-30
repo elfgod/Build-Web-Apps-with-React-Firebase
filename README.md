@@ -97,7 +97,7 @@ npm i react-router-dom@5.1
 json-server --watch ./data/db.json
 
 // install React Router version 5.1
-npm i react-router-dom@5.1
+`npm i react-router-dom@5.1`
 
 ## Section 12: React Context & Reducers
 
@@ -116,3 +116,10 @@ npm i react-router-dom@5.1
 ### 2. Connecting to Firebase
 
 `npm install firebase@8.5`
+
+## Section 14: Project Build: Finance Tracker (with Firebase Authentication)
+
+## Folder 7: my-money
+
+// install React Router version 5.1
+`npm i react-router-dom@5.1`
