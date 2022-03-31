@@ -122,4 +122,8 @@ json-server --watch ./data/db.json
 ## Folder 7: my-money
 
 // install React Router version 5.1
-`npm i react-router-dom@5.1`
+
+```
+npm i react-router-dom@5.1
+npm install firebase@8.5
+```
