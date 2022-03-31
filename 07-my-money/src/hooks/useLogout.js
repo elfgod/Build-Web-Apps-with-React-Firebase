@@ -2,36 +2,22 @@ import { useState, useEffect } from 'react'
 import { projectAuth } from '../firebase/config'
 import { useAuthContext } from './useAuthContext'
 
-export const useSignup = () => {
+export const useLogout = () => {
   const [isCancelled, setIsCancelled] = useState(false)
   const [error, setError] = useState(null)
   const [isPending, setIsPending] = useState(false)
   const { dispatch } = useAuthContext()
-  // Firebase lets us save certain props like displayName, photoURL, email, etc.
-  const signup = async (email, password, displayName) => {
+
+  const logout = async () => {
     setError(null)
     setIsPending(true)
 
+    // Sign the user out
     try {
-      // signup user
-      const res = await projectAuth.createUserWithEmailAndPassword(
-        email,
-        password
-      )
-      console.log(res.user)
+      await projectAuth.signOut()
 
-      // If it doesnt send a valid response
-      if (!res) {
-        throw new Error('Could not complete signup')
-      }
-      // Add display name to user
-      await res.user.updateProfile({
-        // displayName: displayName
-        displayName,
-      })
-
-      // dispatch login action
-      dispatch({ type: 'LOGIN', payload: res.user })
+      // dispatch logout action
+      dispatch({ type: 'LOGOUT' })
 
       // update state
       if (!isCancelled) {
@@ -52,5 +38,5 @@ export const useSignup = () => {
     return () => setIsCancelled(true)
   }, [])
 
-  return { signup, error, isPending }
+  return { logout, error, isPending }
 }
