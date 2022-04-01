@@ -138,3 +138,9 @@ npm install firebase@8.5
 1. Create a Firestore database
 2. Choose test mode
 3. Choose what ever location your traffic comes from
+
+### 3. Create Firebase Index
+
+When you trying to list transactions in the home component,
+you will need to click on the console link to create the index
+in the firebase dashboard thats all
