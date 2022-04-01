@@ -121,9 +121,20 @@ json-server --watch ./data/db.json
 
 ## Folder 7: my-money
 
-// install React Router version 5.1
-
 ```
 npm i react-router-dom@5.1
 npm install firebase@8.5
 ```
+
+### 1. Add Authentication in Firebase
+
+1. Go to the dashboard
+2. Click on Authentication
+3. Select the email/password option
+4. enable the toggle first option
+
+### 2. Create Firebase DataBase
+
+1. Create a Firestore database
+2. Choose test mode
+3. Choose what ever location your traffic comes from
