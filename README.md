@@ -209,4 +209,40 @@ version and select RB
 
 ## Section 17: Project Build: PMS Project Management Site
 
-### 1.
+### 1. Firebase Setup
+
+1. Go to the firebase console https://console.firebase.google.com/
+2. Add project (TheDojoSite)
+3. UnClick Google Analytics for this project
+4. Register a WebApp, click on the WebApp icon </>
+5. Register app (The Dojo)
+6. Don't check the Firebase Hosting
+7. Click on, the Register App
+8. Skip the rest
+9. Click on, the 1 app icon below TheDojoSite
+10. Click on, the settings icon on the right of TheDojo name
+11. Scroll down and click on the config button
+12. Copy the firebase config
+
+// Enable DataBase Service
+
+1. Click on, the Firestore Database
+2. Click on, Create database button
+3. Choose, Start in test mode, NEXT
+4. Choose location, southamerica-east1
+5. Click, on the Enable button
+
+// Enable Auth Service
+
+1. Click on the Authentication
+2. Click on, get started button
+3. Choose, Native providers, Email / Password
+4. Turn on only the, Email/Password button
+
+// Install the firebase
+`npm install firebase@8.5`
+
+### 2. Firebase Init (Rules, Hosting & Storage)
+
+Repeat all the steps in Section 15 in the, 1. The Firebase CLI
+to set up all the project
