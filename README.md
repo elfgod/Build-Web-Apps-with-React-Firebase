@@ -144,3 +144,69 @@ npm install firebase@8.5
 When you trying to list transactions in the home component,
 you will need to click on the console link to create the index
 in the firebase dashboard thats all
+
+## Section 15: Firestore Rules
+
+### 1. The Firebase CLI
+
+1. `npm i -g firebase-tools`
+2. `firebase login`
+3. Click on the link in the terminal to log in
+4. `firebase init`
+5. Check this options in the CLI
+   // For firestore rules
+   X. Firestore: Configure security rules and indexes files for Firestore
+   // For deploying the Application
+   X. Hosting: Configure files for Firebase Hosting and (optionally) set up GitHub Action deploys
+6. Enter
+7. Please select an option: (Use arrow keys)
+   X. Use an existing project
+8. Selec the project name associated with the react app (myMoney)
+9. What file should be used for Firestore Rules? (firestore.rules)
+   Enter to keep the default name
+10. What file should be used for Firestore indexes? (firestore.indexes.json)
+    Enter to keep the default name
+11. What do you want to use as your public directory? (public)
+    DON'T USE PUBLIC!
+    call it: build
+12. Configure as a single-page app (rewrite all urls to /index.html)? (y/N)
+    YES
+13. Set up automatic builds and deploys with GitHub? (y/N)
+    NO
+
+Firebase initialization complete!
+
+### 2. Securing Collection Data
+
+File: `firestore.rules`
+
+### 3. Deploying Firestore Rules
+
+Make sure you are inside the App Folder
+This will only deploy the firestore fules
+`firebase deploy --only firestore`
+
+## Section 16: Building & Deploying
+
+### 1. Building a React App
+
+`npm run build`
+
+### 2. Deploying to Firebase
+
+`firebase deploy`
+
+### 3. Updating the Site & Re-Deploying
+
+`npm run build`
+`firebase deploy`
+
+### 4. Rolling Back Deployments
+
+On the Firebase dashboard, click on Hosting, search for the previous
+version you want to rollback, click on the 3 dots on the right of the
+version and select RB
+
+## Section 17: Project Build: PMS Project Management Site
+
+### 1.
