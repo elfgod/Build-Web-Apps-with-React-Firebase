@@ -10,7 +10,7 @@ const Navbar = () => {
   const { logout, isPending } = useLogout()
   const { user } = useAuthContext()
   return (
-    <div className='navbar'>
+    <nav className='navbar'>
       <ul>
         <li className='logo'>
           <img src={Temple} alt='dojo logo' />
@@ -41,7 +41,7 @@ const Navbar = () => {
           </li>
         )}
       </ul>
-    </div>
+    </nav>
   )
 }
 

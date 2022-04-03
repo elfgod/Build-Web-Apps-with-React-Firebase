@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useLogin } from '../../hooks/useLogin'
 
 // Styles
@@ -17,7 +17,7 @@ const Login = () => {
   }
 
   return (
-    <form className='auth-form' onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className='auth-form'>
       <h2>Login</h2>
       <label>
         <span>email:</span>
@@ -37,7 +37,7 @@ const Login = () => {
           value={password}
         />
       </label>
-      {!isPending && <button className='btn'>Login</button>}
+      {!isPending && <button className='btn'>Log in</button>}
       {isPending && (
         <button className='btn' disabled>
           Loading

@@ -14,12 +14,12 @@ import Navbar from './components/Navbar'
 import Sidebar from './components/Sidebar'
 
 function App() {
-  const { user, authIsReady } = useAuthContext()
+  const { authIsReady, user } = useAuthContext()
   return (
     <div className='App'>
       {authIsReady && (
         <BrowserRouter>
-          <Sidebar />
+          {user && <Sidebar />}
           <div className='container'>
             <Navbar />
             <Switch>
@@ -40,7 +40,7 @@ function App() {
                 {!user && <Login />}
               </Route>
               <Route path='/signup'>
-                {user && <Redirect to='/' />}
+                {user && user.displayName && <Redirect to='/' />}
                 {!user && <Signup />}
               </Route>
             </Switch>

@@ -17,7 +17,7 @@ export const useSignup = () => {
     setIsPending(true)
 
     try {
-      // Signup
+      // signup
       const res = await projectAuth.createUserWithEmailAndPassword(
         email,
         password
@@ -27,23 +27,22 @@ export const useSignup = () => {
         throw new Error('Could not complete signup')
       }
 
-      // Upload user thumbnail, after we create the user
+      // upload user thumbnail
       const uploadPath = `thumbnails/${res.user.uid}/${thumbnail.name}`
       const img = await projectStorage.ref(uploadPath).put(thumbnail)
       const imgUrl = await img.ref.getDownloadURL()
 
-      // Add display name to user
+      // add display AND PHOTO_URL name to user
       await res.user.updateProfile({ displayName, photoURL: imgUrl })
 
-      // Create a user document in the database
-      // Grab all the users documents, list all the users that are online and part of this app
+      // create a user document
       await projectFirestore.collection('users').doc(res.user.uid).set({
         online: true,
         displayName,
         photoURL: imgUrl,
       })
 
-      // Dispatch login action
+      // dispatch login action
       dispatch({ type: 'LOGIN', payload: res.user })
 
       if (!isCancelled) {

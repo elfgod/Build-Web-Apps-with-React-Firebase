@@ -41,7 +41,7 @@ const Signup = () => {
   }
 
   return (
-    <form className='auth-form' onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className='auth-form'>
       <h2>Sign up</h2>
       <label>
         <span>email:</span>
@@ -71,7 +71,7 @@ const Signup = () => {
         />
       </label>
       <label>
-        <span>profile thumbnail:</span>
+        <span>Profile thumbnail:</span>
         <input required type='file' onChange={handleFileChange} />
         {thumbnailError && <div className='error'>{thumbnailError}</div>}
       </label>
