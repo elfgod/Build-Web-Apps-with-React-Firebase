@@ -1,5 +1,9 @@
 import { useState, useEffect } from 'react'
-import { projectAuth, projectStorage } from '../firebase/config'
+import {
+  projectAuth,
+  projectStorage,
+  projectFirestore,
+} from '../firebase/config'
 import { useAuthContext } from './useAuthContext'
 
 export const useSignup = () => {
@@ -13,7 +17,7 @@ export const useSignup = () => {
     setIsPending(true)
 
     try {
-      // signup
+      // Signup
       const res = await projectAuth.createUserWithEmailAndPassword(
         email,
         password
@@ -28,10 +32,18 @@ export const useSignup = () => {
       const img = await projectStorage.ref(uploadPath).put(thumbnail)
       const imgUrl = await img.ref.getDownloadURL()
 
-      // add display name to user
+      // Add display name to user
       await res.user.updateProfile({ displayName, photoURL: imgUrl })
 
-      // dispatch login action
+      // Create a user document in the database
+      // Grab all the users documents, list all the users that are online and part of this app
+      await projectFirestore.collection('users').doc(res.user.uid).set({
+        online: true,
+        displayName,
+        photoURL: imgUrl,
+      })
+
+      // Dispatch login action
       dispatch({ type: 'LOGIN', payload: res.user })
 
       if (!isCancelled) {
