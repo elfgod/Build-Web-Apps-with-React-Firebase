@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react'
-import Select from 'react-select'
 import { useCollection } from '../../hooks/useCollection'
-import { timestamp } from '../../firebase/config'
 import { useAuthContext } from '../../hooks/useAuthContext'
+import { timestamp } from '../../firebase/config'
+import { useFirestore } from '../../hooks/useFirestore'
+import { useHistory } from 'react-router'
+import Select from 'react-select'
 
 // styles
 import './Create.css'
@@ -15,9 +17,11 @@ const categories = [
 ]
 
 const Create = () => {
+  const history = useHistory()
+  const { addDocument, response } = useFirestore('projects')
+  const { user } = useAuthContext()
   const { documents } = useCollection('users')
   const [users, setUsers] = useState([])
-  const { user } = useAuthContext()
 
   // form field values
   const [name, setName] = useState('')
@@ -27,16 +31,14 @@ const Create = () => {
   const [assignedUsers, setAssignedUsers] = useState([])
   const [formError, setFormError] = useState(null)
 
+  // create user values for react-select
   useEffect(() => {
-    // if we have documents, map this
     if (documents) {
-      const options = documents.map((user) => {
-        return {
-          value: user,
-          label: user.displayName,
-        }
-      })
-      setUsers(options)
+      setUsers(
+        documents.map((user) => {
+          return { value: { ...user, id: user.id }, label: user.displayName }
+        })
+      )
     }
   }, [documents])
 
@@ -46,20 +48,13 @@ const Create = () => {
 
     // check if all fields are filled
     if (!category) {
-      setFormError('Please select a project category')
+      setFormError('Please select a project category.')
       return
     }
     if (assignedUsers.length < 1) {
-      setFormError('Please assign the project  to atleast 1 user')
+      setFormError('Please assign the project to at least 1 user')
       return
     }
-
-    const createdBy = {
-      displayName: user.displayName,
-      photoURL: user.photoURL,
-      id: user.uid,
-    }
-
     const assignedUsersList = assignedUsers.map((u) => {
       return {
         displayName: u.value.displayName,
@@ -68,20 +63,31 @@ const Create = () => {
       }
     })
 
+    const createdBy = {
+      displayName: user.displayName,
+      photoURL: user.photoURL,
+      id: user.uid,
+    }
+
     const project = {
       name,
       details,
+      assignedUsersList,
+      createdBy,
       // we have a label and a value on the category property
       category: category.value,
       // timestamp of firebase, it's create a timestamp in the dueDate var
-      dueDate: timestamp.fromDate(new Date(dueDate)),
+      dueDate: timestamp.fromDate(new Date(dueDate.split('-'))),
       comments: [],
-      createdBy,
-      assignedUsersList,
     }
 
     // console.log(name, details, dueDate, category.value, assignedUsers)
     console.log(project)
+    await addDocument(project)
+    // Redirect user if there is no errors
+    if (!response.error) {
+      history.push('/')
+    }
   }
 
   return (
@@ -116,7 +122,6 @@ const Create = () => {
         </label>
         <label>
           <span>Project category:</span>
-          {/* required doesn't work in Select */}
           <Select
             onChange={(option) => setCategory(option)}
             options={categories}
@@ -132,6 +137,7 @@ const Create = () => {
         </label>
 
         <button className='btn'>Add Project</button>
+
         {formError && <p className='error'>{formError}</p>}
       </form>
     </div>
