@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import Select from 'react-select'
 import { useCollection } from '../../hooks/useCollection'
+import { timestamp } from '../../firebase/config'
+import { useAuthContext } from '../../hooks/useAuthContext'
 
 // styles
 import './Create.css'
@@ -15,6 +17,7 @@ const categories = [
 const Create = () => {
   const { documents } = useCollection('users')
   const [users, setUsers] = useState([])
+  const { user } = useAuthContext()
 
   // form field values
   const [name, setName] = useState('')
@@ -47,11 +50,38 @@ const Create = () => {
       return
     }
     if (assignedUsers.length < 1) {
-      setFormError('Please assign the project to atleast 1 user')
+      setFormError('Please assign the project  to atleast 1 user')
       return
     }
 
-    console.log(name, details, dueDate, category.value, assignedUsers)
+    const createdBy = {
+      displayName: user.displayName,
+      photoURL: user.photoURL,
+      id: user.uid,
+    }
+
+    const assignedUsersList = assignedUsers.map((u) => {
+      return {
+        displayName: u.value.displayName,
+        photoURL: u.value.photoURL,
+        id: u.value.id,
+      }
+    })
+
+    const project = {
+      name,
+      details,
+      // we have a label and a value on the category property
+      category: category.value,
+      // timestamp of firebase, it's create a timestamp in the dueDate var
+      dueDate: timestamp.fromDate(new Date(dueDate)),
+      comments: [],
+      createdBy,
+      assignedUsersList,
+    }
+
+    // console.log(name, details, dueDate, category.value, assignedUsers)
+    console.log(project)
   }
 
   return (
