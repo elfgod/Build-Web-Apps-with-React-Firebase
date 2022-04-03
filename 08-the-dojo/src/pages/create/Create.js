@@ -22,6 +22,7 @@ const Create = () => {
   const [dueDate, setDueDate] = useState('')
   const [category, setCategory] = useState('')
   const [assignedUsers, setAssignedUsers] = useState([])
+  const [formError, setFormError] = useState(null)
 
   useEffect(() => {
     // if we have documents, map this
@@ -38,6 +39,18 @@ const Create = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    setFormError(null)
+
+    // check if all fields are filled
+    if (!category) {
+      setFormError('Please select a project category')
+      return
+    }
+    if (assignedUsers.length < 1) {
+      setFormError('Please assign the project to atleast 1 user')
+      return
+    }
+
     console.log(name, details, dueDate, category.value, assignedUsers)
   }
 
@@ -73,6 +86,7 @@ const Create = () => {
         </label>
         <label>
           <span>Project category:</span>
+          {/* required doesn't work in Select */}
           <Select
             onChange={(option) => setCategory(option)}
             options={categories}
@@ -88,6 +102,7 @@ const Create = () => {
         </label>
 
         <button className='btn'>Add Project</button>
+        {formError && <p className='error'>{formError}</p>}
       </form>
     </div>
   )
