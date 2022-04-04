@@ -246,3 +246,72 @@ version and select RB
 
 Repeat all the steps in Section 15 in the, 1. The Firebase CLI
 to set up all the project
+
+### 3. Router & Pages Setup
+
+// install React Router version 5.1
+`npm i react-router-dom@5.1`
+
+### 4. Firebase Storage Setup
+
+I can create folders and subfolders manually
+I can upload files manually
+
+1. Initialize the Storage Service in the firebase config file
+
+```
+import 'firebase/storage'
+const projectStorage = firebase.storage()
+export { projectStorage }
+```
+
+2. Go to your project in the Firebase console
+3. Click on the Storage tab
+4. Edit the rules so it let's you work the Storage with no problems
+
+```
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /{allPaths=**} {
+      allow read, write;
+    }
+  }
+}
+```
+
+### 5. Adding Firestore Rules
+
+1.
+
+```
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /users/{user_id} {
+      allow read, create: if request.auth != null;
+      allow update: if request.auth.uid == user_id;
+    }
+    match /projects/{project_id} {
+      allow: read, create, update: if request.auth != null;
+      allow: delete: if request.auth.uid == resource.data.createBy.id
+    }
+  }
+}
+```
+
+2. Make sure you are inside the App Folder
+   This will only deploy the firestore fules
+   `firebase deploy --only firestore`
+
+### 6. Final Touches
+
+Library to add special dates
+`npm install date-fns`
+
+### 7. Deploying the App
+
+```
+npm run build
+firebase deploy
+```
