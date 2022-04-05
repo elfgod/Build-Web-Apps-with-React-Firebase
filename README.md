@@ -315,3 +315,9 @@ Library to add special dates
 npm run build
 firebase deploy
 ```
+
+## Section 18: React with Firebase version 9
+
+## Folder 9: reading-list
+
+### 1.
