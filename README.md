@@ -320,4 +320,68 @@ firebase deploy
 
 ## Folder 9: reading-list
 
-### 1.
+### 1. Firebase Config File
+
+Repeat the process we have done before in the previous sections
+to config the firebase file
+
+1. Add the project
+2. Add the web app, register the app
+3. Click on the App icon
+4. Click on the Settings icon
+5. Click on the Config button
+6. Copy the Config
+7. Create the firebase/config.js and config it
+
+// Install the firebase 9
+`npm install firebase`
+
+### 2. Getting Documents
+
+Create the Firestore Database
+
+1. Go to Firebase console
+2. Click the Firestore Database TAB
+3. Click the Create database button
+4. Choose Start in test mode
+5. Choose Cloud Firestore location
+
+// Create Start collection
+
+1. `books`
+2.
+
+```
+Auto-ID
+Field: title
+Type: string
+Value: the name of the wind
+```
+
+```
+Auto-ID
+Field: title
+Type: string
+Value: the way of kings
+```
+
+```
+Auto-ID
+Field: title
+Type: string
+Value: the final empire
+```
+
+### 3. Signing Users Up
+
+Enable Authentication Firebase
+
+1. Go to Firebase console
+2. Click the Authentication TAB
+3. Click the Get started button
+4. Choose Native providers: Email/Password
+5. Enable Email/Password
+
+### 4. Firebase Further Reading
+
+https://firebase.google.com/docs/build
