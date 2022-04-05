@@ -385,3 +385,13 @@ Enable Authentication Firebase
 ### 4. Firebase Further Reading
 
 https://firebase.google.com/docs/build
+
+## Section 19: React Router Version 6
+
+## Folder 10: react-router-6
+
+### 1. Introduction to React Router 6
+
+Starter Project
+
+https://github.com/iamshaunjp/React-Router-Version-6
